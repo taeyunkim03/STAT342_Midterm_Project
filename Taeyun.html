@@ -155,7 +155,6 @@
 <div class="formula">
   <strong>Hypotheses:</strong><br>
   \(H_0: \mu_0 = \mu_0^{null}\)<br>
-  \(H_1: \mu_0 \neq \mu_0^{null}\) (or one-sided)
   
   <p><strong>Test Statistic:</strong></p>
   \[T_0 = \frac{\sqrt{n}(\bar{X} - \mu_0^{null})}{S} \sim t_{n-1}\]
@@ -195,7 +194,7 @@
   <strong>Definition:</strong>
   \[\text{Cov}[X, Y] = E[(X - E[X])(Y - E[Y])]\]
   
-  <strong>Computational Formula:</strong>
+  <strong>Alternative:</strong>
   \[\text{Cov}[X, Y] = E[XY] - E[X]E[Y]\]
 </div>
 
@@ -204,24 +203,15 @@
 <h3>Analysis of Differences</h3>
 
 <p>Transform pairs into a single sample of differences:</p>
-\[D_i = X_i - Y_i\]
+\[D = X - Y\]
 
 <div class="formula">
   <strong>Hypotheses:</strong><br>
-  \(H_0: \mu_d = 0\) (no treatment effect)<br>
-  \(H_1: \mu_d \neq 0\)
+  \(H_0: \mu_d = 0\)<br>
   
   <p><strong>Test Statistic:</strong></p>
-  \[T = \frac{\bar{D} - 0}{S_d / \sqrt{n}} \sim t_{n-1}\]
-</div>
-
-<h3>Why Pairing Works</h3>
-
-<div class="formula">
-  <strong>Variance of Difference:</strong>
-  \[\text{Var}(D_i) = \text{Var}(X_i - Y_i) = \text{Var}(X_i) + \text{Var}(Y_i) - 2\text{Cov}(X_i, Y_i)\]
-  
-  <p>Since measurements within pairs are positively correlated, \(\text{Cov}(X_i, Y_i) > 0\), which means \(\text{Var}(D_i)\) is smaller than it would be in an independent two-sample design.</p>
+  \[T_0 = \frac{\sqrt{n}(\bar{D} - \mu_d^{null})}{S_D}\]
+  \[S = \frac{1}{n-1}sum_{i=1}^{n}(D_i - \bar{D})^2\]
 </div>
 
 <h2>Summary Comparison</h2>
@@ -256,5 +246,4 @@
 <p>Written by Taeyun Kim</p>
 
 </body>
-
 </html>
