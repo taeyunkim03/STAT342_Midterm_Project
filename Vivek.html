@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLE Dashboard: Seahawks Edition</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        :root {
+            --navy: #002244;
+            --green: #69BE28;
+            --grey: #A5ACAF;
+            --white: #FFFFFF;
+        }
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--navy);
+            color: var(--white);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 { 
+            color: var(--green); 
+            text-transform: uppercase; 
+            font-size: 3rem; 
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(105, 190, 40, 0.5);
+        }
+        
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-grow: 1;
+        }
+
+        .card {
+            background: rgba(165, 172, 175, 0.05);
+            border: 2px solid var(--grey);
+            border-bottom: 8px solid var(--green);
+            padding: 40px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card:hover {
+            border-color: var(--green);
+            transform: translateY(-5px);
+        }
+
+        h2 { 
+            color: var(--green); 
+            font-size: 1.8rem; 
+            margin-top: 0; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight { color: var(--green); font-weight: bold; }
+
+        .math-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--green);
+            margin: 15px 0;
+            font-size: 1.4rem;
+            text-align: center;
+        }
+
+        img.mle-plot {
+            width: 100%;
+            height: auto;
+            border: 2px solid var(--green);
+            border-radius: 8px;
+            margin-top: auto;
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        @media (max-width: 1000px) {
+            .dashboard { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>MLE: The Championship Strategy</h1>
+</header>
+
+<div class="dashboard">
+    <section class="card">
+        <h2>01. The Core Intuition</h2>
+        <p>MLE isn't just math, it's how we get the best guess. We look at our observations and work backward to find the <strong>most likely cause</strong>.</p>
+        <p><span class="highlight">The Mystery Die:</span> You roll a "1". You have three dice in your pocket:</p>
+        <ul>
+            <li><strong>4-Sided Die:</strong> 25% chance of rolling a 1.</li>
+            <li><strong>6-Sided Die:</strong> 16.7% chance.</li>
+            <li><strong>20-Sided Die:</strong> 5% chance.</li>
+        </ul>
+        <p>Since the 4-Sided Die makes your roll most probable, it is our <span class="highlight">Maximum Likelihood Estimate</span>.</p>
+    </section>
+
+    <section class="card">
+        <h2>02. The Mathematical Playbook</h2>
+        <p>The <strong>Likelihood Function</strong> L of theta treats the data as fixed and the parameter theta as the variable we can tweak to find the peak.</p>
+        <div class="math-box">
+            $$L(\theta) = \prod_{i=1}^{n} f(x_i | \theta)$$
+        </div>
+        <p><strong>The Strategy:</strong> We use the Natural Log (ln) to turn that product into a sum. It’s easier to differentiate and keeps the peak at the same exact location.</p>
+    </section>
+
+    <section class="card">
+        <h2>03. Finding the Peak</h2>
+        <p>To find the best theta, we look for the highest point on the curve. Mathematically, that's where the slope (derivative) equals zero:</p>
+        <div class="math-box">
+            $$\frac{d}{d\theta} \ln L(\theta) = 0$$
+        </div>
+        <img src="Seahawks_plot.png" alt="Likelihood Plot" class="mle-plot">
+    </section>
+
+    <section class="card">
+        <h2>04. Game Day Application</h2>
+        <p>Imagine the Seahawks kicker has 10 field goal attempts. He <strong>Makes 7</strong> and <strong>Misses 3</strong>. What is his "true" success probability theta?</p>
+        
+        <div class="math-box">
+            $$L(\theta) = \theta^7(1-\theta)^3$$
+        </div>
+        
+        <p>By maximizing this function, we find that the most likely value for his success rate is exactly the observed ratio:</p>
+        
+        <div class="math-box">
+            $$\hat{\theta}_{mle} = \frac{7}{10} = 70\%$$
+        </div>
+        
+        <p>The <span class="highlight">70% rate</span> is the parameter that makes that specific season performance the most probable outcome.</p>
+    </section>
+</div>
+
+</body>
+</html>

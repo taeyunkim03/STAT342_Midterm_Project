@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Catalogue of Statistical Methods</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 40px;
+    }
+
+    .poster {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 30px;
+    }
+
+    .box {
+      border: 2px solid #444;
+      border-radius: 12px;
+      padding: 15px;
+      background-color: #ffffff;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="center mb-5">
+    <h1>Catalogue of Statistical Methods</h1>
+    <h4 class="text-muted">Chi-Square Inference & Two-Sided Two-Sample t-Test</h4>
+  </header>
+
+  <div class="poster">
+
+    <div class="box center">
+      <h2>How Do I Choose the Right Test?</h2>
+      <img src="test_selection_flowchart.png" width="90%" alt="Test Selection Flowchart">
+      <p><b>Key idea:</b> Start by identifying the parameter of interest, not the formula.</p>
+    </div>
+
+    <div class="box">
+      <h2>Chi-Square Inference for Variance</h2>
+
+      <p><b>When to use:</b></p>
+      <ul>
+        <li>Data from a normal population</li>
+        <li>Interest in variability (\(\sigma^2\) or \(\sigma\))</li>
+      </ul>
+
+      <p><b>Model:</b><br>
+        \(X_1, \dots, X_n \sim \text{i.i.d. Normal}(\mu_0, \sigma_0)\)
+      </p>
+
+      <p><b>Test statistic:</b><br>
+        \[Q_0 = \frac{(n - 1)S^2}{\sigma^2}\]
+      </p>
+
+      <img src="chi_square_distribution.png" width="100%" alt="Chi-square distribution">
+      <img src="chi_square_rejection_regions.png" width="100%" alt="Chi-square rejection regions">
+
+      <p><b>Tip:</b> Confidence intervals for \(\sigma^2\) are asymmetric because the \(\chi^2\) distribution is skewed.</p>
+    </div>
+
+    <div class="box">
+      <h2>Two-Sided Two-Sample T-Test</h2>
+
+      <p><b>When to use:</b></p>
+      <ul>
+        <li>Comparing means of two independent groups</li>
+        <li>Population variances unknown</li>
+      </ul>
+
+      <p><b>Hypotheses:</b><br>
+        \(H_0: \mu_1 - \mu_2 = 0\)<br>
+        \(H_1: \mu_1 - \mu_2 \neq 0\)
+      </p>
+
+      <p><b>Test statistic:</b><br>
+        \[T = \frac{\bar{X} - \bar{Y}}{S_p \sqrt{1/n + 1/m}}\]
+      </p>
+
+      <img src="t_distribution.png" width="100%" alt="t distribution">
+      <img src="t_test_rejection_regions.png" width="100%" alt="t-test rejection regions">
+
+      <p><b>Tip:</b> If 0 is inside the confidence interval, the two-sided test fails to reject \(H_0\).</p>
+    </div>
+
+    <div class="box">
+      <h2>Big Picture Connections</h2>
+
+      <ul>
+        <li>The \(\chi^2\) distribution arises from sums of squared normal variables</li>
+        <li>The \(t\) distribution arises from a normal variable divided by a scaled \(\chi^2\) variable</li>
+        <li>As sample size increases, \(t \to \text{Normal}\)</li>
+      </ul>
+
+      <p><b>Why this matters:</b> Understanding the distributions explains why the tests work, not just how to compute them.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

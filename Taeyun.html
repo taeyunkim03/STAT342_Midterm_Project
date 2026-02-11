@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Z-Tests and T-Tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <style>
+    body {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    h1 { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; }
+    h2 { margin-top: 30px; color: #333; border-bottom: 1px solid #666; padding-bottom: 5px; }
+    h3 { margin-top: 20px; color: #555; }
+    .formula { background: #f5f5f5; padding: 15px; margin: 15px 0; border-left: 3px solid #333; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+    th { background: #f0f0f0; }
+    .img { width: 50%; text-align: center; margin:0 auto; }
+  </style>
+</head>
+<body>
+
+<h1>Z-Test & T-Test</h1>
+
+<h2>One Sample Design</h2>
+
+<div class="formula">
+  <strong>Model:</strong> \(X_1, X_2, \ldots, X_n \overset{i.i.d.}{\sim} f\) where \(E[X] = \mu_0\) and \(SD[X] = \sigma_0\)
+</div>
+
+<p><strong>Parameter of Interest:</strong> \(\mu_0 = E[X]\)</p>
+<p><strong>Point Estimator:</strong> \(\hat{\mu}_0 = \bar{X}\)</p>
+
+<h2>Z-Test</h2>
+
+<h3>One Sample Mean Inference (Large Sample)</h3>
+
+<div class="formula">
+  <strong>Central Limit Theorem:</strong><br>
+  \[\bar{X} \approx \text{Norm}\left(\mu_0, \frac{\sigma_0}{\sqrt{n}}\right)\]
+  
+  <strong>Equivalently:</strong>
+  \[Z = \frac{\sqrt{n}(\bar{X} - \mu_0)}{\sigma_0} \approx \text{Norm}(0, 1)\]
+</div>
+
+<div class="img">
+   <img src="z_dist.png" alt="Z-Distribution" width="100%">
+</div>
+
+<h3>Confidence Interval</h3>
+
+<div class="formula">
+  <strong>100(1-α)% Confidence Interval for μ₀:</strong>
+  \[\bar{X} \pm z_{\alpha/2} \frac{\sigma_0}{\sqrt{n}}\]
+  
+  <p>Note: when \(\sigma_0\) is unknown, replace it with a consistent estimate.</p>
+</div>
+
+<h3>Hypothesis Testing</h3>
+
+<div class="formula">
+  <strong>Hypotheses:</strong><br>
+  \(H_0: \mu_0 = \mu_0^{null}\)<br>
+  \(H_1: \mu_0 \neq \mu_0^{null}\) (two-sided)
+  
+  <p><strong>Test Statistic:</strong></p>
+  \[Z_0 = \frac{\sqrt{n}(\bar{X} - \mu_0^{null})}{\sigma_0} \approx \text{Norm}(0, 1)\]
+</div>
+
+<table>
+  <tr>
+    <th>Alternative</th>
+    <th>P-value</th>
+  </tr>
+  <tr>
+    <td>\(H_1: \mu_0 > \mu_0^{null}\)</td>
+    <td>\(P(Z \geq z_0)\)</td>
+  </tr>
+  <tr>
+    <td>\(H_1: \mu_0 < \mu_0^{null}\)</td>
+    <td>\(P(Z \leq z_0)\)</td>
+  </tr>
+  <tr>
+    <td>\(H_1: \mu_0 \neq \mu_0^{null}\)</td>
+    <td>Double 1-sided P-value</td>
+  </tr>
+</table>
+
+<h3>Binomial Proportion</h3>
+
+<div class="formula">
+  <p>For success probability \(\pi_0\), testing \(H_0: \pi_0 = \pi_0^{null}\):</p>
+  
+  <strong>Sampling Distribution:</strong>
+  \[\bar{X} \approx \text{Norm}\left(\pi_0, \sqrt{\frac{\pi_0(1-\pi_0)}{n}}\right)\]
+  
+  <strong>Confidence Interval:</strong>
+  \[\bar{X} \pm z_{\alpha/2}\sqrt{\frac{\bar{X}(1-\bar{X})}{n}}\]
+  
+  <strong>Test Statistic:</strong>
+  \[Z = \frac{\sqrt{n}(\bar{X} - \pi_0^{null})}{\sqrt{\pi_0^{null}(1-\pi_0^{null})}}\]
+</div>
+
+<h3>Duality</h3>
+
+<p>In testing \(H_0: \mu_0 = \mu_0^{null}\) versus \(H_1: \mu_0 \neq \mu_0^{null}\) using the z-test, when \(H_0\) is rejected at the α-level, the 100(1-α)% confidence interval does not contain \(\mu_0^{null}\).</p>
+
+<h2>T-Distribution</h2>
+
+<p>When \(\sigma_0\) is unknown and replaced with sample standard deviation \(S\), the ratio:</p>
+\[T = \frac{\sqrt{n}(\bar{X} - \mu_0)}{S}\]
+<p>does not have a standard normal distribution when \(n\) is small.</p>
+
+<h3>Properties</h3>
+<ul>
+  <li>Bell-shaped and symmetric about 0</li>
+  <li>Characterized by degrees of freedom: df = n - 1</li>
+  <li>Thicker tails than the normal distribution</li>
+  <li>Approaches standard normal as df increases</li>
+</ul>
+
+<div class="img">
+  <img src="t_dis.png" alt="T-Distribution" width="100%">
+</div>
+
+<div class="formula">
+  <strong>Theorem:</strong> If \(X_1, X_2, \ldots, X_n \overset{i.i.d.}{\sim} \text{Norm}(\mu_0, \sigma_0)\), then:
+  \[T = \frac{\sqrt{n}(\bar{X} - \mu_0)}{S} \sim t_{n-1}\]
+  where \(S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2\)
+</div>
+
+<h2>The One-Sample T-Test</h2>
+
+<h3>Assumptions</h3>
+<div class="formula">
+  Data: \(X_1, X_2, \ldots, X_n \overset{i.i.d.}{\sim} \text{Norm}(\mu_0, \sigma_0)\) both unknown<br>
+  No restrictions on sample size \(n\)
+</div>
+
+<h3>Confidence Interval</h3>
+
+<div class="formula">
+  <strong>100(1-α)% Confidence Interval for μ₀:</strong>
+  \[\bar{X} \pm t_{\alpha/2, n-1} \frac{S}{\sqrt{n}}\]
+</div>
+
+<h3>Hypothesis Testing</h3>
+
+<div class="formula">
+  <strong>Hypotheses:</strong><br>
+  \(H_0: \mu_0 = \mu_0^{null}\)<br>
+  \(H_1: \mu_0 \neq \mu_0^{null}\) (or one-sided)
+  
+  <p><strong>Test Statistic:</strong></p>
+  \[T_0 = \frac{\sqrt{n}(\bar{X} - \mu_0^{null})}{S} \sim t_{n-1}\]
+</div>
+
+<table>
+  <tr>
+    <th>Alternative</th>
+    <th>P-value</th>
+  </tr>
+  <tr>
+    <td>\(H_1: \mu_0 > \mu_0^{null}\)</td>
+    <td>\(P_{\mu_0=\mu_0^{null}}(T_0 \geq t_0)\)</td>
+  </tr>
+  <tr>
+    <td>\(H_1: \mu_0 < \mu_0^{null}\)</td>
+    <td>\(P_{\mu_0=\mu_0^{null}}(T_0 \leq t_0)\)</td>
+  </tr>
+  <tr>
+    <td>\(H_1: \mu_0 \neq \mu_0^{null}\)</td>
+    <td>Double 1-sided P-value</td>
+  </tr>
+</table>
+
+<h3>Duality</h3>
+<p>If \(\mu_0^{null}\) is an interior point of the 100(1-α)% confidence interval, then the P-value will be larger than α.</p>
+
+<h2>Paired Data</h2>
+
+<p><strong>Definition:</strong> Measurements taken in pairs (e.g., twins, same subject before and after treatment) to keep conditions constant and reduce confounding.</p>
+
+<p><strong>Notation:</strong> \((X_1, Y_1), (X_2, Y_2), \ldots, (X_n, Y_n)\)</p>
+
+<h3>Covariance</h3>
+
+<div class="formula">
+  <strong>Definition:</strong>
+  \[\text{Cov}[X, Y] = E[(X - E[X])(Y - E[Y])]\]
+  
+  <strong>Computational Formula:</strong>
+  \[\text{Cov}[X, Y] = E[XY] - E[X]E[Y]\]
+</div>
+
+<p><strong>Note:</strong> In paired designs, \(X_i\) and \(Y_i\) are typically positively associated. Independence implies zero covariance, but zero covariance does not imply independence.</p>
+
+<h3>Analysis of Differences</h3>
+
+<p>Transform pairs into a single sample of differences:</p>
+\[D_i = X_i - Y_i\]
+
+<div class="formula">
+  <strong>Hypotheses:</strong><br>
+  \(H_0: \mu_d = 0\) (no treatment effect)<br>
+  \(H_1: \mu_d \neq 0\)
+  
+  <p><strong>Test Statistic:</strong></p>
+  \[T = \frac{\bar{D} - 0}{S_d / \sqrt{n}} \sim t_{n-1}\]
+</div>
+
+<h3>Why Pairing Works</h3>
+
+<div class="formula">
+  <strong>Variance of Difference:</strong>
+  \[\text{Var}(D_i) = \text{Var}(X_i - Y_i) = \text{Var}(X_i) + \text{Var}(Y_i) - 2\text{Cov}(X_i, Y_i)\]
+  
+  <p>Since measurements within pairs are positively correlated, \(\text{Cov}(X_i, Y_i) > 0\), which means \(\text{Var}(D_i)\) is smaller than it would be in an independent two-sample design.</p>
+</div>
+
+<h2>Summary Comparison</h2>
+
+<table>
+  <tr>
+    <th>Test</th>
+    <th>Assumption</th>
+    <th>Test Statistic</th>
+    <th>Distribution</th>
+  </tr>
+  <tr>
+    <td>Z-test</td>
+    <td>Large n, any distribution</td>
+    <td>\(\frac{\sqrt{n}(\bar{X} - \mu_0^{null})}{\sigma_0}\)</td>
+    <td>Norm(0, 1)</td>
+  </tr>
+  <tr>
+    <td>One-sample T-test</td>
+    <td>Normal distribution</td>
+    <td>\(\frac{\sqrt{n}(\bar{X} - \mu_0^{null})}{S}\)</td>
+    <td>\(t_{n-1}\)</td>
+  </tr>
+  <tr>
+    <td>Paired T-test</td>
+    <td>Paired data</td>
+    <td>\(\frac{\sqrt{n}\bar{D}}{S_D}\)</td>
+    <td>\(t_{n-1}\)</td>
+  </tr>
+</table>
+
+</body>
+</html>

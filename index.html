@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>STAT 342 Group Project</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      padding: 60px 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      color: #666;
+      margin-bottom: 50px;
+      font-size: 1.1rem;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .nav-button {
+      display: block;
+      padding: 20px 30px;
+      background: #667eea;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .nav-button:hover {
+      background: #764ba2;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .nav-button:active {
+      transform: translateY(-1px);
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.9);
+      margin-top: 8px;
+      font-weight: normal;
+    }
+
+    .footer {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 768px) {
+      .nav-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .nav-button {
+        flex: 1;
+        max-width: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>STAT 342 Group Project</h1>
+
+    <div class="nav-buttons">
+      <a href="Taeyun.html" class="nav-button">
+        Module 1 & 2
+        <div class="section-desc">Z-Tests & T-Tests</div>
+      </a>
+      
+      <a href="Lingesh.html" class="nav-button">
+        Module 3 & 4
+        <div class="section-desc">Chi-Square & Two-Sample T-Test</div>
+      </a>
+      
+      <a href="Vivek.html" class="nav-button">
+        Module 5
+        <div class="section-desc">Maximum Likelihood Estimation</div>
+      </a>
+    </div>
+
+    <div class="footer">
+      Taeyun Kim | Vivek Vemulakonda | Lingesh Lishalan Sivabalan
+    </div>
+  </div>
+
+</body>
+</html>
